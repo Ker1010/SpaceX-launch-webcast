@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>SpaceX launch webcast</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link href='https://fonts.googleapis.com/css?family=Bai Jamjuree' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-dark">
+    <div class="row">
+        <div class="col">
+            <img src="src/Telemetry.png" class="position-absolute bottom-0 start-0 text-center"
+                style="transform: translateX(-13%); width: 35%;">
+            <div class="position-absolute bottom-0 start-0 translate-middle-x text-center speedinfo">
+                <b class="spdits">0</b>
+            </div>
+            <div class="position-absolute bottom-0 start-0 translate-middle-x text-center altinfo">
+                <b class="altits">0</b>
+            </div>
+        </div>
+        <div class="col">
+            <img src="src/Mainboard.png"
+                class="position-absolute bottom-0 start-50 translate-middle-x text-center w-75">
+            <div class="position-absolute bottom-0 start-50 translate-middle-x text-center w-75">
+                <h2 class="timer">time</h2>
+                <p class="alttext">MISSION</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let seconds = -60;
+    let timerId;
+    startTimer();
+    function updateTimer() {
+        seconds++;
+        if (seconds < 0) {
+            const absSeconds = Math.abs(seconds);
+            const hours = Math.floor(absSeconds / 3600);
+            const minutes = Math.floor((absSeconds % 3600) / 60);
+            const remainingSeconds = absSeconds % 60;
+
+            const timeString = `T-${padZero(hours)}:${padZero(minutes)}:${padZero(remainingSeconds)}`;
+            $(".timer").text(timeString);
+        }
+        else {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const remainingSeconds = seconds % 60;
+            const timeString = `T+${padZero(hours)}:${padZero(minutes)}:${padZero(remainingSeconds)}`;
+            $(".timer").text(timeString);
+        }
+    }
+
+    function padZero(num) {
+        num = Math.abs(num)
+        return num.toString().padStart(2, '0');
+    }
+
+    function startTimer() {
+        if (!timerId) {
+            timerId = setInterval(updateTimer, 1000);
+        }
+    }
+
+
+
+    
+</script>
+
+</html>

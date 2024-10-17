@@ -1,0 +1,28 @@
+body {
+  color: white;
+  font-family: "Bai Jamjuree";
+}
+
+.timer {
+  font-size: 2.5vw;
+}
+
+.alttext {
+  font-size: 1vw;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.speedinfo {
+  text-align: center;
+  margin-left: 4.8%;
+  margin-bottom: 4%;
+  font-size: 2vw;
+}
+
+.altinfo {
+  text-align: center;
+  margin-left: 13.8%;
+  margin-bottom: 4%;
+  font-size: 2vw;
+}
